@@ -73,7 +73,7 @@ export default function HeroSlider({ onEdit }) {
           <div key={i} className={`slide${i === current ? ' active' : ''}`}>
             <div className="slide-bg" style={
               slide.image_url
-                ? { backgroundImage: `url(${slide.image_url})`, backgroundSize: 'cover', backgroundPosition: 'center' }
+                ? { backgroundImage: `url(${slide.image_url})`, backgroundSize: 'cover', backgroundPosition: 'center top' }
                 : { background: GRADS[i % GRADS.length] }
             } />
             <div className="hero-content">
