@@ -332,41 +332,82 @@ input,textarea,select{font-family:inherit}
 .btn-save:disabled{opacity:.5;cursor:not-allowed;transform:none}
 
 /* ── LOCK SCREEN ── */
-.lock-screen{position:fixed;inset:0;background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);display:flex;align-items:center;justify-content:center;z-index:9999}
-.lock-box{background:#fff;border-radius:16px;padding:2.5rem;width:100%;max-width:400px;box-shadow:0 25px 60px rgba(0,0,0,.4)}
-.lock-box h2{font-size:1.5rem;font-weight:700;text-align:center;margin-bottom:.5rem}
-.lock-box>p{text-align:center;color:#888;font-size:.88rem;margin-bottom:1.75rem}
+
+/* ── EDIT SECTION BTN ── */
+.edit-section-btn{position:absolute;top:20px;right:20px;background:rgba(102,126,234,.95);color:#fff;padding:8px 18px;border-radius:50px;border:none;font-weight:600;z-index:100;font-size:13px;display:none;white-space:nowrap}
+.edit-mode .edit-section-btn{display:inline-flex;align-items:center;gap:6px}
+.edit-section-btn:hover{background:rgba(102,126,234,1)}
 
 /* ── RESPONSIVE ── */
 @media(max-width:768px){
+  /* Navbar */
   .hamburger{display:block}
   .nav-menu{position:fixed;top:0;right:-100%;width:70%;max-width:300px;height:100vh;background:rgba(0,0,0,.95);flex-direction:column;padding:80px 30px;gap:0;margin-right:0;transition:right .3s;z-index:1000}
   .nav-menu.open{right:0}
   .nav-menu li{width:100%}
   .nav-menu a{color:#fff !important;font-size:1.2rem;padding:15px 0;display:block;border-bottom:1px solid rgba(255,255,255,.1);text-shadow:none !important}
-  .hero-title{font-size:2.2rem}
-  .gallery-grid{grid-template-columns:1fr}
-  .gallery-cards{grid-template-columns:1fr}
+
+  /* Hero */
+  .hero{height:60vh;min-height:400px}
+  .hero-title{font-size:2rem;letter-spacing:-1px}
+  .hero-subtitle{font-size:.85rem}
+  .hero-description{font-size:1rem;margin-bottom:1.5rem}
+  .cta-button{padding:.8rem 2rem;font-size:.85rem}
+  .slide-btn{width:44px;height:44px;font-size:1rem}
+  .indicator{width:10px;height:10px}
+
+  /* Sections */
+  .services{padding:60px 0}
+  .gallery-section{padding:60px 0}
+  .contact{padding:60px 0}
+  .section-title{margin-bottom:2rem}
+  .section-title h2{font-size:1.8rem}
+  .container{padding:0 1.2rem}
+
+  /* Grids */
+  .gallery-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .gallery-thumb{height:160px;border-radius:8px}
+  .gallery-cards{grid-template-columns:1fr 1fr;gap:1rem}
+  .gallery-card-img{height:160px}
   .contact-content{grid-template-columns:1fr;gap:2rem}
-  .services-grid{grid-template-columns:1fr}
+  .services-grid{grid-template-columns:1fr 1fr;gap:1rem}
+  .service-card{padding:1.5rem 1rem}
   .about-grid,.mv-grid{grid-template-columns:1fr}
   .form-row{grid-template-columns:1fr}
+
+  /* Edit badge */
+  .edit-badge{right:12px;bottom:12px;padding:7px 10px;font-size:.72rem;gap:6px}
+  .edit-badge span{display:none}
+
+  /* Edit section btn */
+  .edit-section-btn{top:16px;right:12px;font-size:.75rem;padding:6px 12px}
+
+  /* Floating social */
+  .floating-social{right:12px;bottom:70px;gap:8px}
+  .float-btn{width:40px;height:40px;font-size:1rem}
+  .float-btn i{line-height:40px}
+
+  /* Admin */
   .admin-sidebar{width:100%;height:auto;position:relative}
   .admin-main{margin-left:0}
+
+  /* Lightbox */
   .lb-inner{flex-direction:column;padding:3rem 1rem 1rem}
   .lb-left{max-width:100%;height:50vh;flex-direction:column-reverse}
   .lb-thumbs{flex-direction:row;overflow-x:auto;overflow-y:hidden;max-height:none}
   .lb-right{max-width:100%;flex:1;max-height:none}
-  .edit-badge{right:12px;bottom:12px;padding:8px 12px;font-size:.75rem;gap:7px}
-  .fab{bottom:72px;right:12px;width:46px;height:46px;font-size:1.2rem}
-  .edit-section-btn{top:auto;bottom:20px;right:20px;font-size:.8rem;padding:8px 14px}
-}
-@media(max-width:576px){
-  .gallery-grid{grid-template-columns:1fr}
-  .hero-title{font-size:1.8rem}
 }
 
-/* ── EDIT SECTION BTN ── */
-.edit-section-btn{position:absolute;bottom:16px;right:16px;top:auto;background:rgba(102,126,234,.95);color:#fff;padding:7px 16px;border-radius:50px;border:none;font-weight:600;z-index:100;font-size:12px;display:none;white-space:nowrap}
-.edit-mode .edit-section-btn{display:inline-flex;align-items:center;gap:5px}
-.edit-section-btn:hover{background:rgba(102,126,234,1)}
+@media(max-width:480px){
+  .hero{height:55vh;min-height:350px}
+  .hero-title{font-size:1.7rem}
+  .gallery-grid{grid-template-columns:1fr}
+  .gallery-cards{grid-template-columns:1fr}
+  .services-grid{grid-template-columns:1fr}
+}
+
+/* ── LOCK SCREEN ── */
+.lock-screen{position:fixed;inset:0;background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);display:flex;align-items:center;justify-content:center;z-index:9999}
+.lock-box{background:#fff;border-radius:16px;padding:2.5rem;width:100%;max-width:400px;box-shadow:0 25px 60px rgba(0,0,0,.4)}
+.lock-box h2{font-size:1.5rem;font-weight:700;text-align:center;margin-bottom:.5rem}
+.lock-box>p{text-align:center;color:#888;font-size:.88rem;margin-bottom:1.75rem}
