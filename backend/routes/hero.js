@@ -12,6 +12,7 @@ async function uploadToBlob(file, folder = 'hero') {
   const blob = await put(filename, file.buffer, {
     access: 'public',
     contentType: file.mimetype,
+    token: process.env.BLOB_READ_WRITE_TOKEN,
   });
   return blob.url;
 }
