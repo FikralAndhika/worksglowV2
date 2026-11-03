@@ -64,7 +64,7 @@ export default function Navbar() {
           </button>
 
           <ul className={`nav-menu${open ? ' open' : ''}`}>
-            <li><Link to="/"        className={active('/')}        onClick={() => setOpen(false)}>Beranda</Link></li>
+            <li><Link to="/" className={active('/')} onClick={() => { setOpen(false); window.scrollTo({ top: 0, behavior: 'smooth' }) }}>Beranda</Link></li>
             <li><a href="/#services"                               onClick={() => setOpen(false)}>Layanan</a></li>
             <li><Link to="/gallery" className={active('/gallery')} onClick={() => setOpen(false)}>Galeri</Link></li>
             <li><Link to="/about"   className={active('/about')}   onClick={() => setOpen(false)}>About Us</Link></li>
