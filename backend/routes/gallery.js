@@ -4,8 +4,8 @@ const auth = require('../middleware/auth');
 const makeUpload = require('../middleware/upload');
 const { put, del } = require('@vercel/blob');
 
-const upload = makeUpload('gallery', 'images', 10);
-const uploadNew = makeUpload('gallery', 'newImages', 10);
+const upload = makeUpload('gallery', 'images', 50);
+const uploadNew = makeUpload('gallery', 'newImages', 50);
 
 // Upload a buffer to Vercel Blob and return public URL
 async function uploadToBlob(file, folder = 'gallery') {

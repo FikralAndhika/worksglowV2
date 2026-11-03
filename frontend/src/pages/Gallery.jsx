@@ -81,12 +81,9 @@ export default function Gallery() {
 
   function addFiles(fileList) {
     const allowed = ['image/jpeg','image/jpg','image/png','image/webp','image/gif']
-    Array.from(fileList).forEach(f => {
-      if (!allowed.includes(f.type)) return
-      if (newFiles.length >= 10) return
-      setNewFiles(p => [...p, f])
-      setNewPreviews(p => [...p, URL.createObjectURL(f)])
-    })
+    const validFiles = Array.from(fileList).filter(f => allowed.includes(f.type))
+    setNewFiles(p => [...p, ...validFiles])
+    setNewPreviews(p => [...p, ...validFiles.map(f => URL.createObjectURL(f))])
   }
   function removeNewFile(i) {
     setNewFiles(p => p.filter((_,idx) => idx !== i))
@@ -306,7 +303,7 @@ export default function Gallery() {
                       onChange={e => addFiles(e.target.files)} />
                     <i className="fas fa-cloud-upload-alt" />
                     <p>Drag & drop atau <strong style={{ color:'#667eea' }}>pilih foto</strong></p>
-                    <p style={{ fontSize:'.75rem', color:'#aaa', marginTop:4 }}>Max 10 foto · JPEG PNG WebP · 10MB</p>
+                    <p style={{ fontSize:'.75rem', color:'#aaa', marginTop:4 }}>Pilih banyak foto sekaligus · JPEG PNG WebP · 10MB/foto</p>
                   </div>
                   {newPreviews.length > 0 && (
                     <div className="preview-grid" style={{ marginTop:'.75rem' }}>
