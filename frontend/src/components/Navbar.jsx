@@ -52,14 +52,10 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Admin button or edit badge */}
-      {!isEdit ? (
-        <button className="admin-login-btn" onClick={() => setShowLogin(true)}>
-          <i className="fas fa-lock" style={{ marginRight: 8 }} /> Admin Login
-        </button>
-      ) : (
+      {/* Edit badge — only shown when logged in */}
+      {isEdit && (
         <div className="edit-badge">
-          <span><i className="fas fa-edit" style={{ marginRight: 6 }} />Edit Mode ON</span>
+          <span><i className="fas fa-edit" style={{ marginRight: 6 }} />Edit Mode</span>
           <Link to="/admin"><i className="fas fa-tachometer-alt" style={{ marginRight: 4 }} />Dashboard</Link>
           <button onClick={() => { if (confirm('Yakin logout?')) logout() }}>
             <i className="fas fa-sign-out-alt" style={{ marginRight: 4 }} />Logout
