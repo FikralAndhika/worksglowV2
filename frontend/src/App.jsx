@@ -6,7 +6,19 @@ import About   from './pages/About'
 import Admin   from './pages/Admin'
 
 function FloatingSocial() {
-  return null
+  return (
+    <div className="floating-social">
+      <a href="https://wa.me/6285606296686" target="_blank" rel="noreferrer" className="float-btn" title="WhatsApp">
+        <i className="fab fa-whatsapp" />
+      </a>
+      <a href="https://www.instagram.com/works_glow/" target="_blank" rel="noreferrer" className="float-btn" title="Instagram">
+        <i className="fab fa-instagram" />
+      </a>
+      <a href="https://www.tiktok.com/@works_glow" target="_blank" rel="noreferrer" className="float-btn" title="TikTok">
+        <i className="fab fa-tiktok" />
+      </a>
+    </div>
+  )
 }
 
 export default function App() {
