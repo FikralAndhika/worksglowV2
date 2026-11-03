@@ -1,11 +1,14 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { AuthProvider } from './context/AuthContext'
+import { useAuth } from './context/AuthContext'
 import Home    from './pages/Home'
 import Gallery from './pages/Gallery'
 import About   from './pages/About'
 import Admin   from './pages/Admin'
 
 function FloatingSocial() {
+  const { isEdit } = useAuth()
+  if (isEdit) return null
   return (
     <div className="floating-social">
       <a href="https://wa.me/6285606296686" target="_blank" rel="noreferrer" className="float-btn" title="WhatsApp">

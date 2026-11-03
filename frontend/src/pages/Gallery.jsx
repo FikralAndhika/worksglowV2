@@ -146,6 +146,11 @@ export default function Gallery() {
           <div className="section-title">
             <h2>Galeri Karya</h2>
             <p>Lihat hasil karya terbaik kami dengan kualitas premium</p>
+            {isEdit && (
+              <button className="btn-primary" onClick={openCreate} style={{marginTop:'1rem'}}>
+                <i className="fas fa-plus" /> Tambah Project
+              </button>
+            )}
           </div>
 
           {loading
@@ -188,12 +193,7 @@ export default function Gallery() {
         </div>
       </section>
 
-      {/* FAB add button */}
-      {isEdit && (
-        <button className="fab-add" onClick={openCreate} title="Tambah Project">
-          + Tambah
-        </button>
-      )}
+      {/* FAB add button removed - moved to section title */}
 
       <Footer />
 
