@@ -381,7 +381,7 @@ input,textarea,select{font-family:inherit}
   .edit-badge span{display:none}
 
   /* Edit section btn */
-  .edit-section-btn{top:16px;right:12px;font-size:.75rem;padding:6px 12px}
+  .edit-section-btn{top:auto !important;bottom:16px !important;right:12px !important;left:auto !important;font-size:.75rem;padding:6px 12px}
 
   /* Floating social */
   .floating-social{right:12px;bottom:70px;gap:8px}
