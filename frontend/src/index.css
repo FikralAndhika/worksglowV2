@@ -29,9 +29,6 @@ input,textarea,select{font-family:inherit}
 
 /* ── HERO ── */
 .hero{height:100vh;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;color:#fff}
-@media(max-width:768px){
-  .hero .edit-section-btn{top:70px}
-}
 .hero-slider{position:absolute;inset:0}
 .slide{position:absolute;inset:0;opacity:0;transition:opacity 1.5s ease-in-out;display:flex;align-items:center;justify-content:center}
 .slide.active{opacity:1}
@@ -365,6 +362,6 @@ input,textarea,select{font-family:inherit}
 }
 
 /* ── EDIT SECTION BTN ── */
-.edit-section-btn{position:absolute;top:16px;right:16px;background:rgba(102,126,234,.95);color:#fff;padding:7px 16px;border-radius:50px;border:none;font-weight:600;z-index:100;font-size:12px;display:none;white-space:nowrap;max-width:calc(100% - 32px)}
+.edit-section-btn{position:absolute;bottom:16px;right:16px;top:auto;background:rgba(102,126,234,.95);color:#fff;padding:7px 16px;border-radius:50px;border:none;font-weight:600;z-index:100;font-size:12px;display:none;white-space:nowrap}
 .edit-mode .edit-section-btn{display:inline-flex;align-items:center;gap:5px}
 .edit-section-btn:hover{background:rgba(102,126,234,1)}
