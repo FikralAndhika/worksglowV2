@@ -108,15 +108,12 @@ input,textarea,select{font-family:inherit}
 .social-links a:hover{color:#fff;transform:scale(1.2)}
 
 /* ── FLOATING SOCIAL ── */
-.floating-social{position:fixed;right:16px;top:50%;transform:translateY(-50%);z-index:9000;display:flex;flex-direction:column;gap:10px}
-.float-btn{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;text-decoration:none;transition:transform .2s,opacity .2s;background:rgba(255,255,255,.15);backdrop-filter:blur(6px);border:1.5px solid rgba(255,255,255,.25);color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.2)}
-.float-btn:hover{transform:scale(1.15)}
-.float-wa{background:rgba(37,211,102,.85)}
-.float-ig{background:linear-gradient(135deg,#f09433 0%,#dc2743 50%,#bc1888 100%)}
-.float-tt{background:rgba(0,0,0,.75)}
+.floating-social{position:fixed;right:16px;bottom:30px;z-index:9000;display:flex;flex-direction:column;gap:12px;align-items:center}
+.float-btn{width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;text-decoration:none;color:rgba(255,255,255,.85);transition:color .2s,transform .2s;background:none;border:none}
+.float-btn:hover{color:#fff;transform:scale(1.2)}
 @media(max-width:768px){
-  .floating-social{right:10px;gap:8px}
-  .float-btn{width:36px;height:36px;font-size:1rem}
+  .floating-social{right:10px;bottom:25px;gap:10px}
+  .float-btn{font-size:1.2rem}
 }
 .edit-badge{
   position:fixed;
