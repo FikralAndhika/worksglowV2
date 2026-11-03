@@ -366,5 +366,5 @@ input,textarea,select{font-family:inherit}
 .edit-mode .edit-section-btn{display:inline-flex;align-items:center;gap:6px}
 .edit-section-btn:hover{background:rgba(102,126,234,1)}
 @media(max-width:768px){
-  .edit-section-btn{top:75px;right:10px;font-size:11px;padding:6px 12px}
+  .edit-section-btn{position:fixed;top:auto;bottom:90px;right:10px;left:auto;font-size:11px;padding:6px 14px;z-index:9999}
 }
