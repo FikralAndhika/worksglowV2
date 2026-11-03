@@ -59,7 +59,7 @@ input,textarea,select{font-family:inherit}
 .section-title p{color:#666;font-weight:300}
 
 /* ── SERVICES ── */
-.services{padding:100px 0;background:#fff;position:relative}
+.services{padding:100px 0;background:#fff;position:relative;overflow:hidden}
 .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;margin-top:3rem}
 .service-card{background:#fff;padding:2.5rem 2rem;border:1px solid #e9ecef;text-align:center;transition:all .3s;position:relative;overflow:hidden}
 .service-card:hover{transform:translateY(-5px);box-shadow:0 20px 40px rgba(0,0,0,.1);border-color:#000}
@@ -80,7 +80,7 @@ input,textarea,select{font-family:inherit}
 .btn-detail:hover{background:#333;transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,0,0,.2)}
 
 /* ── CONTACT ── */
-.contact{padding:100px 0;background:#464545;color:#fff;position:relative}
+.contact{padding:100px 0;background:#464545;color:#fff;position:relative;overflow:hidden}
 .contact .section-title h2{color:#fff}
 .contact .section-title p{color:#ccc}
 .contact-content{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
@@ -366,5 +366,5 @@ input,textarea,select{font-family:inherit}
 .edit-mode .edit-section-btn{display:inline-flex;align-items:center;gap:6px}
 .edit-section-btn:hover{background:rgba(102,126,234,1)}
 @media(max-width:768px){
-  .edit-section-btn{top:70px;right:auto;left:50%;transform:translateX(-50%);font-size:12px;padding:7px 14px}
+  .edit-section-btn{top:75px;right:10px;font-size:11px;padding:6px 12px}
 }
