@@ -190,8 +190,8 @@ export default function Gallery() {
 
       {/* FAB add button */}
       {isEdit && (
-        <button className="fab" onClick={openCreate} title="Tambah Project">
-          <i className="fas fa-plus" />
+        <button className="fab-add" onClick={openCreate} title="Tambah Project">
+          + Tambah
         </button>
       )}
 

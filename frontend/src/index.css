@@ -196,25 +196,23 @@ input,textarea,select{font-family:inherit}
 .btn-del-sm{padding:.4rem .9rem;background:#f44336;color:#fff;border:none;border-radius:5px;font-weight:600;font-size:.82rem;transition:background .2s}
 .btn-del-sm:hover{background:#d32f2f}
 /* FAB: muncul di kanan bawah, di atas edit-badge */
-.fab{
+.fab-add{
   position:fixed;
   bottom:90px;
   right:30px;
   background:linear-gradient(135deg,#667eea,#764ba2);
   color:#fff;
-  width:52px;
-  height:52px;
-  border-radius:50%;
+  padding:10px 20px;
+  border-radius:25px;
   border:none;
-  font-size:1.4rem;
-  box-shadow:0 4px 20px rgba(102,126,234,.55);
-  transition:all .3s;
+  font-size:.9rem;
+  font-weight:700;
+  box-shadow:0 4px 15px rgba(102,126,234,.5);
   display:flex;
   align-items:center;
-  justify-content:center;
+  gap:6px;
   z-index:999;
 }
-.fab:hover{transform:scale(1.1);box-shadow:0 6px 25px rgba(102,126,234,.7)}
 
 /* ── LIGHTBOX ── */
 .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:9999;display:flex;align-items:center;justify-content:center;animation:fadeIn .3s}
