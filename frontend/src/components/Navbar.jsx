@@ -21,7 +21,7 @@ export default function Navbar() {
     e.preventDefault()
     tapCount.current += 1
     clearTimeout(tapTimer.current)
-    if (tapCount.current >= 5) {
+    if (tapCount.current >= 3) {
       tapCount.current = 0
       setShowLogin(true)
     } else {
