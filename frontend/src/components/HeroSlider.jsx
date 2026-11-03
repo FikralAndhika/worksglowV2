@@ -49,12 +49,11 @@ export default function HeroSlider({ onEdit }) {
       <div className="hero-slider">
         {slides.map((slide, i) => (
           <div key={i} className={`slide${i === current ? ' active' : ''}`}>
-            <div className="slide-bg" style={{
-              backgroundImage: slide.image_url
-                ? `url(${slide.image_url})`
-                : GRADS[i % GRADS.length],
-              background: slide.image_url ? undefined : GRADS[i % GRADS.length],
-            }} />
+            <div className="slide-bg" style={
+              slide.image_url
+                ? { backgroundImage: `url(${slide.image_url})`, backgroundSize: 'cover', backgroundPosition: 'center' }
+                : { background: GRADS[i % GRADS.length] }
+            } />
             <div className="hero-content">
               <div className="hero-subtitle">{slide.subtitle}</div>
               <h1 className="hero-title">{slide.title}</h1>
