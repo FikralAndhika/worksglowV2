@@ -1,10 +1,15 @@
 const router = require('express').Router();
 const { query } = require('../config/db');
 const auth = require('../middleware/auth');
-const makeUpload = require('../middleware/upload');
+const multer = require('multer');
 const { put } = require('@vercel/blob');
 
-const upload = makeUpload('hero', 'images', 10);
+// Hero pakai any() karena field name-nya dynamic: hero1Image, hero2Image, hero3Image
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 10 * 1024 * 1024 },
+  fileFilter: (req, file, cb) => cb(null, ['image/jpeg','image/jpg','image/png','image/webp','image/gif'].includes(file.mimetype)),
+}).any();
 
 async function uploadToBlob(file, folder = 'hero') {
   const ext = file.originalname.split('.').pop();
