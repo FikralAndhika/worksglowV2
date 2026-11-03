@@ -362,9 +362,9 @@ input,textarea,select{font-family:inherit}
 }
 
 /* ── EDIT SECTION BTN ── */
-.edit-section-btn{position:absolute;top:70px;left:50%;transform:translateX(-50%);background:rgba(102,126,234,.95);color:#fff;padding:8px 18px;border-radius:50px;border:none;font-weight:600;z-index:100;transition:all .3s;font-size:13px;display:none;white-space:nowrap}
+.edit-section-btn{position:absolute;top:20px;right:20px;background:rgba(102,126,234,.95);color:#fff;padding:8px 18px;border-radius:50px;border:none;font-weight:600;z-index:100;font-size:13px;display:none;white-space:nowrap}
 .edit-mode .edit-section-btn{display:inline-flex;align-items:center;gap:6px}
 .edit-section-btn:hover{background:rgba(102,126,234,1)}
 @media(max-width:768px){
-  .edit-section-btn{top:65px;font-size:12px;padding:7px 14px}
+  .edit-section-btn{top:70px;right:auto;left:50%;transform:translateX(-50%);font-size:12px;padding:7px 14px}
 }
