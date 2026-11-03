@@ -2,11 +2,21 @@ const router = require('express').Router();
 const { pool } = require('../config/db');
 const auth = require('../middleware/auth');
 const makeUpload = require('../middleware/upload');
-const fs = require('fs');
-const path = require('path');
+const { put, del } = require('@vercel/blob');
 
 const upload = makeUpload('gallery', 'images', 10);
 const uploadNew = makeUpload('gallery', 'newImages', 10);
+
+// Upload a buffer to Vercel Blob and return public URL
+async function uploadToBlob(file, folder = 'gallery') {
+  const ext = file.originalname.split('.').pop();
+  const filename = `${folder}/${folder}-${Date.now()}-${Math.round(Math.random() * 1e9)}.${ext}`;
+  const blob = await put(filename, file.buffer, {
+    access: 'public',
+    contentType: file.mimetype,
+  });
+  return blob.url;
+}
 
 // GET /api/gallery
 router.get('/', async (req, res) => {
@@ -54,9 +64,10 @@ router.post('/create', auth, upload, async (req, res) => {
 
     const files = req.files || [];
     for (let i = 0; i < files.length; i++) {
+      const imageUrl = await uploadToBlob(files[i], 'gallery');
       await client.query(
         'INSERT INTO gallery_images (project_id,image_url,image_order,is_primary) VALUES ($1,$2,$3,$4)',
-        [project.id, `/uploads/gallery/${files[i].filename}`, i, i === 0]
+        [project.id, imageUrl, i, i === 0]
       );
     }
 
@@ -93,28 +104,28 @@ router.post('/update/:id', auth, uploadNew, async (req, res) => {
       await client.query(`UPDATE gallery_projects SET ${updates.join(',')} WHERE id=$${idx}`, vals);
     }
 
-    // Delete marked images
+    // Delete marked images from Blob and DB
     if (deleted_images) {
       const ids = JSON.parse(deleted_images);
       if (ids.length) {
         const imgRows = await client.query('SELECT image_url FROM gallery_images WHERE id=ANY($1::int[])', [ids]);
-        imgRows.rows.forEach(r => {
-          const fp = path.join(__dirname, '..', 'public', r.image_url);
-          fs.unlink(fp, () => {});
-        });
+        for (const r of imgRows.rows) {
+          try { await del(r.image_url); } catch {}
+        }
         await client.query('DELETE FROM gallery_images WHERE id=ANY($1::int[])', [ids]);
       }
     }
 
-    // Add new images
+    // Add new images to Blob
     const files = req.files || [];
     if (files.length) {
       const maxRes = await client.query('SELECT COALESCE(MAX(image_order),-1) AS m FROM gallery_images WHERE project_id=$1', [id]);
       let nextOrder = maxRes.rows[0].m + 1;
       for (const file of files) {
+        const imageUrl = await uploadToBlob(file, 'gallery');
         await client.query(
           'INSERT INTO gallery_images (project_id,image_url,image_order,is_primary) VALUES ($1,$2,$3,$4)',
-          [id, `/uploads/gallery/${file.filename}`, nextOrder++, false]
+          [id, imageUrl, nextOrder++, false]
         );
       }
     }
@@ -137,10 +148,9 @@ router.delete('/:id', auth, async (req, res) => {
   try {
     await client.query('BEGIN');
     const imgs = await client.query('SELECT image_url FROM gallery_images WHERE project_id=$1', [req.params.id]);
-    imgs.rows.forEach(r => {
-      const fp = path.join(__dirname, '..', 'public', r.image_url);
-      fs.unlink(fp, () => {});
-    });
+    for (const r of imgs.rows) {
+      try { await del(r.image_url); } catch {}
+    }
     await client.query('DELETE FROM gallery_projects WHERE id=$1', [req.params.id]);
     await client.query('COMMIT');
     res.json({ status: 'success', message: 'Deleted' });

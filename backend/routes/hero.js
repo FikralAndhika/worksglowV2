@@ -2,8 +2,19 @@ const router = require('express').Router();
 const { query } = require('../config/db');
 const auth = require('../middleware/auth');
 const makeUpload = require('../middleware/upload');
+const { put } = require('@vercel/blob');
 
 const upload = makeUpload('hero', 'images', 10);
+
+async function uploadToBlob(file, folder = 'hero') {
+  const ext = file.originalname.split('.').pop();
+  const filename = `${folder}/${folder}-${Date.now()}-${Math.round(Math.random() * 1e9)}.${ext}`;
+  const blob = await put(filename, file.buffer, {
+    access: 'public',
+    contentType: file.mimetype,
+  });
+  return blob.url;
+}
 
 // GET /api/hero
 router.get('/', async (req, res) => {
@@ -22,12 +33,13 @@ router.post('/update', auth, upload, async (req, res) => {
   try {
     const body = req.body;
     const files = req.files || [];
-    const fileMap = {};
-    files.forEach(f => { fileMap[f.fieldname] = f; });
 
     for (let i = 1; i <= 3; i++) {
-      const file = req.files && req.files.find(f => f.fieldname === `hero${i}Image`);
-      const imageUrl = file ? `/uploads/hero/${file.filename}` : null;
+      const file = files.find(f => f.fieldname === `hero${i}Image`);
+      let imageUrl = null;
+      if (file) {
+        imageUrl = await uploadToBlob(file, 'hero');
+      }
 
       await query(
         `UPDATE hero_slides SET subtitle=$1, title=$2, description=$3,
