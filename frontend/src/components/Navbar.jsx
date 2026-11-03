@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
@@ -11,6 +11,26 @@ export default function Navbar() {
   const [logging, setLogging]    = useState(false)
   const { isEdit, login, logout } = useAuth()
   const loc = useLocation()
+
+  // Secret tap: klik logo 5x dalam 2 detik → buka login
+  const tapCount = useRef(0)
+  const tapTimer = useRef(null)
+
+  function handleLogoClick(e) {
+    if (isEdit) return // sudah login, biarkan navigasi biasa
+    e.preventDefault()
+    tapCount.current += 1
+    clearTimeout(tapTimer.current)
+    if (tapCount.current >= 5) {
+      tapCount.current = 0
+      setShowLogin(true)
+    } else {
+      tapTimer.current = setTimeout(() => {
+        tapCount.current = 0
+        window.location.href = '/'
+      }, 2000)
+    }
+  }
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50)
@@ -36,7 +56,8 @@ export default function Navbar() {
     <>
       <nav className={`navbar${scrolled ? ' scrolled' : ''}`}>
         <div className="nav-container">
-          <Link to="/" className="nav-logo">Works Glow</Link>
+          {/* Logo — klik 5x cepat untuk buka admin login */}
+          <a href="/" className="nav-logo" onClick={handleLogoClick}>Works Glow</a>
 
           <button className="hamburger" onClick={() => setOpen(!open)}>
             <i className={`fas ${open ? 'fa-times' : 'fa-bars'}`} />
