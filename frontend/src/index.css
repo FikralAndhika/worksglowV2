@@ -107,7 +107,17 @@ input,textarea,select{font-family:inherit}
 .social-links a{color:#ccc;font-size:1.5rem;transition:all .3s}
 .social-links a:hover{color:#fff;transform:scale(1.2)}
 
-/* ── ADMIN BADGE ── */
+/* ── FLOATING SOCIAL ── */
+.floating-social{position:fixed;left:20px;bottom:30px;z-index:9000;display:flex;flex-direction:column;gap:10px}
+.float-btn{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.3rem;text-decoration:none;transition:transform .25s,box-shadow .25s;box-shadow:0 4px 15px rgba(0,0,0,.2)}
+.float-btn:hover{transform:scale(1.12);box-shadow:0 6px 20px rgba(0,0,0,.3)}
+.float-wa{background:linear-gradient(135deg,#25d366,#128c7e)}
+.float-ig{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}
+.float-tt{background:linear-gradient(135deg,#010101,#69c9d0)}
+@media(max-width:768px){
+  .floating-social{left:12px;bottom:12px;gap:8px}
+  .float-btn{width:40px;height:40px;font-size:1.1rem}
+}
 .edit-badge{
   position:fixed;
   bottom:30px;
