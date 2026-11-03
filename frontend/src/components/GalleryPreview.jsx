@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import API_BASE from '../config'
 
 const GRADS = [
   'linear-gradient(135deg,#667eea,#764ba2)',
@@ -15,7 +16,7 @@ export default function GalleryPreview() {
   const nav = useNavigate()
 
   useEffect(() => {
-    fetch('/api/gallery').then(r => r.json()).then(d => {
+    fetch(`${API_BASE}/api/gallery`).then(r => r.json()).then(d => {
       if (d.status === 'success') setItems(d.data.slice(0, 6))
     }).catch(() => {})
   }, [])

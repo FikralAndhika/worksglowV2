@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link }     from 'react-router-dom'
 import { useAuth }  from '../context/AuthContext'
+import API_BASE from '../config'
 
 const ICONS = ['fa-car','fa-motorcycle','fa-tools','fa-palette','fa-shield-alt','fa-certificate','fa-paint-brush','fa-wrench','fa-cogs','fa-star']
 
@@ -29,11 +30,11 @@ export default function Admin() {
   async function fetchAll() {
     try {
       const [gal, svc, ct, hero, me] = await Promise.all([
-        fetch('/api/gallery').then(r=>r.json()),
-        fetch('/api/services').then(r=>r.json()),
-        fetch('/api/contact').then(r=>r.json()),
-        fetch('/api/hero').then(r=>r.json()),
-        fetch('/api/auth/me', { headers:{ Authorization:`Bearer ${token}` } }).then(r=>r.json()),
+        fetch(`${API_BASE}/api/gallery`).then(r=>r.json()),
+        fetch(`${API_BASE}/api/services`).then(r=>r.json()),
+        fetch(`${API_BASE}/api/contact`).then(r=>r.json()),
+        fetch(`${API_BASE}/api/hero`).then(r=>r.json()),
+        fetch(`${API_BASE}/api/auth/me`, { headers:{ Authorization:`Bearer ${token}` } }).then(r=>r.json()),
       ])
       if (gal.status==='success')  setStats(s => ({ ...s, gallery: gal.data.length }))
       if (svc.status==='success')  { setStats(s => ({ ...s, services: svc.data.length })); setServices(svc.data) }

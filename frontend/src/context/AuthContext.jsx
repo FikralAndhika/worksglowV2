@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react'
+import API_BASE from '../config'
 
 const AuthContext = createContext(null)
 
@@ -15,7 +16,7 @@ export function AuthProvider({ children }) {
 
   async function verifyToken() {
     try {
-      const res = await fetch('/api/auth/me', { headers: { Authorization: `Bearer ${token}` } })
+      const res = await fetch(`${API_BASE}/api/auth/me`, { headers: { Authorization: `Bearer ${token}` } })
       if (res.ok) {
         const data = await res.json()
         setUser(data.data)
@@ -26,7 +27,7 @@ export function AuthProvider({ children }) {
   }
 
   async function login(username, password) {
-    const res  = await fetch('/api/auth/login', {
+    const res  = await fetch(`${API_BASE}/api/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, password })
@@ -50,7 +51,7 @@ export function AuthProvider({ children }) {
 
   async function authFetch(url, opts = {}) {
     const headers = { Authorization: `Bearer ${token}`, ...(opts.headers || {}) }
-    const res = await fetch(url, { ...opts, headers })
+    const res = await fetch(`${API_BASE}${url}`, { ...opts, headers })
     if (res.status === 401 || res.status === 403) { logout(); throw new Error('Session expired') }
     return res
   }

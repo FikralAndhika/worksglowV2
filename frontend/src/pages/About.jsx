@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import Navbar  from '../components/Navbar'
 import Footer  from '../components/Footer'
 import { useAuth } from '../context/AuthContext'
+import API_BASE from '../config'
 
 const logo = '/logo.png' // place your logo in frontend/public/logo.png
 
@@ -30,7 +31,7 @@ export default function About() {
   useEffect(() => { load() }, [])
 
   async function load() {
-    const r = await fetch('/api/about'); const d = await r.json()
+    const r = await fetch(`${API_BASE}/api/about`); const d = await r.json()
     if (d.status === 'success') setData(d.data)
   }
 

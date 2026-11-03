@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useAuth } from '../context/AuthContext'
+import API_BASE from '../config'
 
 const DEFAULT = [
   { icon:'fa-car',         title:'Cat Mobil',        description:'Layanan cat mobil profesional dengan hasil sempurna dan tahan lama.' },
@@ -15,7 +16,7 @@ export default function Services({ onEdit }) {
   const { isEdit } = useAuth()
 
   useEffect(() => {
-    fetch('/api/services').then(r => r.json()).then(d => {
+    fetch(`${API_BASE}/api/services`).then(r => r.json()).then(d => {
       if (d.status === 'success' && d.data?.length) setServices(d.data)
     }).catch(() => {})
   }, [])

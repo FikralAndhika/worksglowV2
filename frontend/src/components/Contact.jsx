@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useAuth } from '../context/AuthContext'
+import API_BASE from '../config'
 
 const DEFAULT = {
   address:'Jl. Pasir Pogor Raya No.7 Blok DD No.6, Mekarjaya, Kec. Rancasari, Kota Bandung, Jawa Barat 40292',
@@ -14,7 +15,7 @@ export default function Contact({ onEdit }) {
   const { isEdit } = useAuth()
 
   useEffect(() => {
-    fetch('/api/contact').then(r => r.json()).then(d => {
+    fetch(`${API_BASE}/api/contact`).then(r => r.json()).then(d => {
       if (d.status === 'success') setInfo(d.data)
     }).catch(() => {})
   }, [])

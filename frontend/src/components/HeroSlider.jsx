@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { useAuth } from '../context/AuthContext'
+import API_BASE from '../config'
 
 const DEFAULT = [
   { subtitle:'Make A Desire',        title:'WORKS GLOW',      description:'Bengkel Cat Profesional dengan Kualitas Premium', image_url: null },
@@ -20,7 +21,7 @@ export default function HeroSlider({ onEdit }) {
   const timerRef                = useRef(null)
 
   useEffect(() => {
-    fetch('/api/hero').then(r => r.json()).then(d => {
+    fetch(`${API_BASE}/api/hero`).then(r => r.json()).then(d => {
       if (d.status === 'success') {
         const s = [d.data.slide1, d.data.slide2, d.data.slide3].filter(Boolean)
         if (s.length) setSlides(s)

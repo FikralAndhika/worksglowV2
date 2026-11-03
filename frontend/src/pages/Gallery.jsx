@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import Navbar   from '../components/Navbar'
 import Footer   from '../components/Footer'
 import { useAuth } from '../context/AuthContext'
+import API_BASE from '../config'
 
 const GRADS = [
   'linear-gradient(135deg,#667eea,#764ba2)',
@@ -35,7 +36,7 @@ export default function Gallery() {
 
   async function loadGallery() {
     setLoading(true)
-    const r = await fetch('/api/gallery'); const d = await r.json()
+    const r = await fetch(`${API_BASE}/api/gallery`); const d = await r.json()
     if (d.status === 'success') setProjects(d.data)
     setLoading(false)
   }
